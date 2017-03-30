@@ -12,3 +12,4 @@ pbs script for MegaHit success
 
 3-30-17
 Set up QUAST pbs 
+Set up MetaBat pbs
