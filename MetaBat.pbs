@@ -1,0 +1,25 @@
+#!/bin/sh
+#PBS -N MetaBat_Megahit
+#PBS -V
+#PBS -A earth523w17_fluxm
+#PBS -l qos=flux
+#PBS -q fluxm
+#PBS -l nodes=4:ppn=4
+#PBS -l walltime=24:00:00
+#PBS -l mem=400gb
+#PBS -M eamuelle@umich.edu
+#PBS -m abe
+#PBS -j oe
+
+#load module
+#module load metabat/0.32.4
+
+#give access to folder
+echo "I ran on:"
+cat $PBS_NODEFILE
+cd $PBS_O_WORKDIR
+
+cd /scratch/earth523w17_fluxm/eamuelle/MegaHIT/
+#code
+
+metabat -i ./Megahit_3_29_17_2/final.contigs.fa -o ./Megahit_3_29_17_2/MegaHIT_MetaBat_bins.fasta --unbinned
