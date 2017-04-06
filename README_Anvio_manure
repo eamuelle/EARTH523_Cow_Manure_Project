@@ -1,0 +1,34 @@
+This file was created on 2017-03-30 to document the preparation of anvio scripts. 
+
+2017-04-06: Anvio Mapping Update
+	In order to take use the differential coverage binning within CONCOCT (via Anvi'o), you need to run the anvio mapping module for each sample SEPARATELY. This requires 
+	making BAM files. 
+
+	BAM files- files were made from raw fwd and rev read files (NOT QC'ed, will cause problems, trust Sharon.)
+
+	Steps to use mapping:
+		1. Make directory for each read file containing BAM files and scaffold file (Assembly output).
+			Note: As these files already exist in your directory, you can make symbolic links. (ln -s [file linl] [link name]
+		2. Make a pbs filing for each sample directory
+		3. Run anvi_mapping_Sample337##.pbs
+
+		Note: An example mapping pbs is included in GIT repos
+
+
+2017-04-02: Resolved calling the perl scripts but am not sure what files we need and how to get them to run the mapping script:
+From mapping.sh:
+	path2scaffolds=$1/scaffold.fasta <-- is the the same as the contig file?
+	path2fwd=$1/fwd.fastq <-- are these fastq files generated from the reads or the assembly?
+	path2rev=$1/rev.fastq
+	path2scripts="/geomicro/data1/COMMON/scripts/BamTools"
+	threads=14
+
+
+Notes:
+1. The following command does not work in this order:
+module load python-anaconda2/latest gsl ncbi-blast prodigal/2.6.2 hmmer mcl centrifuge diamond anvio
+instead: module load gsl ncbi-blast prodigal/2.6.2 hmmer mcl centrifuge diamond anvio python-anaconda2/latest
+
+2. Must reformat contig file to avoid sassy message from Anivo. 
+Run script: anvi-script-reformat-fasta [whatever contig file name].fa -o contigs-fixed.fa -l 0 --simplify-names
+Now make sure the anvio_gen_contigs.pbs calls the new, fixed file.
