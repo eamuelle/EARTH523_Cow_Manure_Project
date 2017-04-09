@@ -1,6 +1,6 @@
 #!/bin/sh
 #PBS -S /bin/sh
-#PBS -N anvi_mapping_metahit
+#PBS -N anvi_mapping_idba##
 #PBS -A earth523w17_fluxm
 #PBS -l qos=flux
 #PBS -q fluxm
@@ -15,6 +15,7 @@
 echo "I ran on:"
 cat $PBS_NODEFILE
 
+#EMC NOTE: either let the program handle your output or cd to the folder in which you have your samples
 cd /scratch/earth523w17_fluxm/emcrosse/Anvio_Manure/
 
 ## Make sure you load the following modules before submitting the scripts
@@ -30,5 +31,9 @@ cd /scratch/earth523w17_fluxm/emcrosse/Anvio_Manure/
 ## changing out the contents of Mapping, or changing the directory in this script
 ## Edit the path name to reflect location of mapping.
 
-perl /scratch/earth523w17_fluxm/emcrosse/Anvio_Manure/mapping.sh Sample77309
+#EMC NOTE: I don't recommend copying the files to your working directory. Instead, reference the BAMfolder:
+#EMC NOTE: be sure to change the emcrosse with your directory.
+#EMC NOTE: The Sample77309 refers to the directory containing my linked BAM and fastq files.
+
+perl /scratch/earth523w17_fluxm/emcrosse/EARTH523/scripts/BamTools/mappinh/sh Sample77309
 
