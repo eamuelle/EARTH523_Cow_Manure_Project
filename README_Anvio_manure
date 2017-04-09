@@ -1,5 +1,12 @@
 This file was created on 2017-03-30 to document the preparation of anvio scripts. 
 
+2017-04-09: Anvio Mapping update
+	anvio_mapping failed becasue instead of linking the perl script to the mapping.sh in the BAMtools folder,
+	I coppied mapping.sh to my present working directory. This prevented the script from finding the other files
+	in the folder that were needed to complete the command.
+
+	Note: updated mapping.pbs cript updated. Open script and follow the included instructions 
+
 2017-04-06: Anvio Mapping Update
 	In order to take use the differential coverage binning within CONCOCT (via Anvi'o), you need to run the anvio mapping module for each sample SEPARATELY. This requires 
 	making BAM files. 
